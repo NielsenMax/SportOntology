@@ -218,6 +218,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Winner">
         <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Competitors"/>
+        <rdfs:domain rdf:resource="https://iia.nielsenmax.dev/ontologies/sport/Competition"/>
         <rdfs:range>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -234,6 +235,7 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Competitors -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Competitors">
+        <rdfs:domain rdf:resource="https://iia.nielsenmax.dev/ontologies/sport/Competition"/>
         <rdfs:range>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -522,6 +524,7 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/nextRound -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/nextRound">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/prevRound"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Round"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Round"/>
         <rdfs:comment xml:lang="en-gb">Relates a round in a multi-round competition to its next round.</rdfs:comment>
@@ -534,6 +537,7 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/nextSession -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/nextSession">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/prevSession"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Session"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Session"/>
         <rdfs:comment xml:lang="en-gb">Relates a session to its next session.</rdfs:comment>
@@ -546,6 +550,7 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/nextStage -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/nextStage">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/prevStage"/>
         <rdfs:domain rdf:resource="https://iia.nielsenmax.dev/ontologies/sport/Competition"/>
         <rdfs:range rdf:resource="https://iia.nielsenmax.dev/ontologies/sport/Competition"/>
         <rdfs:comment xml:lang="en-gb">Relates a stage in a multi-stage competition to its next stage.</rdfs:comment>
@@ -1532,6 +1537,7 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaAmistad -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaAmistad">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/MedalCompetition"/>
         <sport-ontology:EventOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FigureSkating"/>
         <sport-ontology:OrganizedBy rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FPPSF"/>
         <sport-ontology:Winner rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Mari"/>
@@ -1545,11 +1551,18 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaArgentina -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaArgentina">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/MultiRoundCompetition"/>
         <sport-ontology:EventOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Football"/>
         <sport-ontology:OrganizedBy rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/AFA"/>
         <sport-ontology:Winner rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol"/>
         <sport-ontology1:Competitors rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol"/>
         <sport-ontology1:Competitors rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#NewellsFutbol"/>
+        <sport-ontology1:hasRound rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/final"/>
+        <sport-ontology1:hasRound rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/semifinal"/>
+        <sport-ontology1:hasRound rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/16avos"/>
+        <sport-ontology1:hasRound rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/32avos"/>
+        <sport-ontology1:hasRound rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/4tos"/>
+        <sport-ontology1:hasRound rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/8avos"/>
         <sport-ontology1:numberOfCompetitors rdf:datatype="http://www.w3.org/2001/XMLSchema#int">64</sport-ontology1:numberOfCompetitors>
     </owl:NamedIndividual>
     
@@ -1836,6 +1849,7 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#MundialPrecision -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#MundialPrecision">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/MedalCompetition"/>
         <sport-ontology:EventOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FigureSkating"/>
         <sport-ontology:Place rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Patinodromo"/>
         <sport-ontology:Winner rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millennium"/>
@@ -2109,6 +2123,59 @@
         <sport-ontology:foundationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1903-11-03T00:00:00Z</sport-ontology:foundationDate>
         <sport-ontology:name>Club Atlético Newell&apos;s Old Boys</sport-ontology:name>
         <sport-ontology:numberOfMembers rdf:datatype="http://www.w3.org/2001/XMLSchema#int">70257</sport-ontology:numberOfMembers>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/final -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/final">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Round"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/semifinal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/semifinal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Round"/>
+        <sport-ontology1:nextRound rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/final"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/16avos -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/16avos">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Round"/>
+        <sport-ontology1:nextRound rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/8avos"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/32avos -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/32avos">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Round"/>
+        <sport-ontology1:nextRound rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/16avos"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/4tos -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/4tos">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Round"/>
+        <sport-ontology1:nextRound rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/semifinal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/8avos -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/8avos">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Round"/>
+        <sport-ontology1:nextRound rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/4tos"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 

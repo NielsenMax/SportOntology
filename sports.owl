@@ -38,6 +38,7 @@
                 </owl:unionOf>
             </owl:Class>
         </rdfs:range>
+        <rdfs:comment>Indicates which athlete coaches</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -48,6 +49,16 @@
         <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Sport"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Equipment"/>
         <rdfs:comment>Specifies the equipment used in a sport</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EventOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EventOf">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#SportEvent"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Sport"/>
+        <rdfs:comment>Indicates what sport is an event</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -66,6 +77,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#IsChairedBy">
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Presides"/>
+        <rdfs:comment>Indicates the president of an organization</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -83,6 +95,7 @@
             </owl:Class>
         </rdfs:domain>
         <rdfs:range rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Team"/>
+        <rdfs:comment>Indicates which team an athlete belongs to</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -120,6 +133,7 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Place">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Event"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Venue"/>
+        <rdfs:comment>Indicates where an event is held</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -157,6 +171,7 @@
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/member"/>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+        <rdfs:comment>Indicates which organization a person presides</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -175,6 +190,7 @@
             </owl:Class>
         </rdfs:domain>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+        <rdfs:comment>Indicates which organization a person, team or club represent</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -223,6 +239,7 @@
                 </owl:unionOf>
             </owl:Class>
         </rdfs:range>
+        <rdfs:comment>Indicates the competitors of a tournament or match</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -233,6 +250,7 @@
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/member"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Referee"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#GoverningBody"/>
+        <rdfs:comment>Indicates which federation a referee belongs to</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -249,6 +267,7 @@
                 </owl:unionOf>
             </owl:Class>
         </rdfs:range>
+        <rdfs:comment>Indicates which sport is judged by a referee</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -259,6 +278,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
+        <rdfs:comment>Represents the teammate relationship</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -275,7 +295,6 @@
             </owl:Class>
         </rdfs:domain>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
-        <rdfs:comment>Specifies the equipment used in a sport</rdfs:comment>
     </owl:ObjectProperty>
     
 
@@ -1050,6 +1069,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaAmistad">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/RoundRobin"/>
+        <sport-ontology:EventOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FigureSkating"/>
         <sport-ontology:OrganizedBy rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FPPSF"/>
         <sport-ontology:Winner rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Mari"/>
         <sport-ontology1:Competitors rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Mari"/>
@@ -1063,6 +1083,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaArgentina">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Tournament"/>
+        <sport-ontology:EventOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Football"/>
         <sport-ontology:OrganizedBy rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/AFA"/>
         <sport-ontology:Winner rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol"/>
         <sport-ontology1:Competitors rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol"/>
@@ -1354,6 +1375,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#MundialPrecision">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Match"/>
+        <sport-ontology:EventOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FigureSkating"/>
         <sport-ontology:Place rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Patinodromo"/>
         <sport-ontology:Winner rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millennium"/>
         <sport-ontology1:Competitors rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millennium"/>
@@ -1410,6 +1432,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#RevisionNacional">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Training"/>
+        <sport-ontology:EventOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FigureSkating"/>
         <sport-ontology:Place rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Patinodromo"/>
     </owl:NamedIndividual>
     

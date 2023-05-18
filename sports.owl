@@ -124,6 +124,7 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#organizedBy -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#organizedBy">
+        <rdfs:domain rdf:resource="http://purl.org/NET/c4dm/event.owl#Event"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
         <rdfs:comment>Indicates which organization organized an event</rdfs:comment>
     </owl:ObjectProperty>
@@ -142,6 +143,7 @@
                 </owl:unionOf>
             </owl:Class>
         </rdfs:domain>
+        <rdfs:range rdf:resource="http://purl.org/NET/c4dm/event.owl#Event"/>
         <rdfs:comment>Represents the sport events in which a team or an athlete participates</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -453,6 +455,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/judge">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Referee"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Sport"/>
         <rdfs:comment>Indicates which sport is judged by a referee</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -832,6 +835,7 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/numberOfCompetitors -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/numberOfCompetitors">
+        <rdfs:domain rdf:resource="http://purl.org/NET/c4dm/event.owl#Event"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
         <rdfs:comment>Number of competitors on a match. Competitors are teams if is a team sport or are individuals if is a individual sport</rdfs:comment>
     </owl:DatatypeProperty>
@@ -1257,7 +1261,7 @@
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#equipmentUsed"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Horse"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Animal"/>
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Sport"/>
@@ -1338,8 +1342,8 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Match">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/UnitCompetition"/>
-        <rdfs:comment xml:lang="en-gb">The smallest unit of sporting competition.</rdfs:comment>
         <rdfs:comment>Non competitive match</rdfs:comment>
+        <rdfs:comment xml:lang="en-gb">The smallest unit of sporting competition.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.bbc.co.uk/ontologies/sport"/>
         <rdfs:label xml:lang="en-gb">Match</rdfs:label>
     </owl:Class>

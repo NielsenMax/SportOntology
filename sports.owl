@@ -7,7 +7,9 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:foaf="http://xmlns.com/foaf/0.1/#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:sport-ontology="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#">
+     xmlns:foaf2="http://xmlns.com/foaf/0.1/"
+     xmlns:sport-ontology="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#"
+     xmlns:sport-ontology1="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/">
     <owl:Ontology rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology"/>
     
 
@@ -60,6 +62,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#IsChairedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#IsChairedBy">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Presides"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#MemberOf -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#MemberOf">
@@ -90,6 +100,7 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#ParticipatesIn -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#ParticipatesIn">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Competitors"/>
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -140,12 +151,12 @@
     
 
 
-    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#President -->
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Presides -->
 
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#President">
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Presides">
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/member"/>
-        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
-        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
     </owl:ObjectProperty>
     
 
@@ -158,6 +169,7 @@
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#SportClub"/>
                     <rdf:Description rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Team"/>
                 </owl:unionOf>
             </owl:Class>
@@ -254,7 +266,14 @@
     <!-- http://xmlns.com/foaf/0.1/member -->
 
     <owl:ObjectProperty rdf:about="http://xmlns.com/foaf/0.1/member">
-        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Group"/>
+                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Person"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
         <rdfs:comment>Specifies the equipment used in a sport</rdfs:comment>
     </owl:ObjectProperty>
@@ -276,6 +295,16 @@
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#brand">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Equipment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#capacity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#capacity">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Venue"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     </owl:DatatypeProperty>
     
 
@@ -285,6 +314,40 @@
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#date">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Event"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#debutYear -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#debutYear">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#foundationDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#foundationDate">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Team"/>
+                    <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#height -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#height">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     </owl:DatatypeProperty>
     
 
@@ -301,11 +364,11 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#name -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#name">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Team"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Venue"/>
                     <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
                 </owl:unionOf>
             </owl:Class>
@@ -329,6 +392,24 @@
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#numberOfPlayers">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Sport"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#position -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#position">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#price -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#price">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Equipment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
     </owl:DatatypeProperty>
     
 
@@ -425,6 +506,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Bicycle -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Bicycle">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Vehicle"/>
+        <rdfs:comment>Represents a bicycle</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Coach -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Coach">
@@ -438,7 +528,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Court">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Venue"/>
-        <rdfs:comment>Represents enclosed spaces with defined boundaries</rdfs:comment>
+        <rdfs:comment>Represents spaces with defined boundaries</rdfs:comment>
     </owl:Class>
     
 
@@ -466,11 +556,30 @@
     
 
 
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#GolfStick -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#GolfStick">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Stick"/>
+        <rdfs:comment>Represents a golf stick</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#GoverningBody -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#GoverningBody">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
         <owl:disjointWith rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#SportClub"/>
+        <rdfs:comment>An entity whose main function is the regulation and organization of sport</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#HockeyStick -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#HockeyStick">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Stick"/>
+        <rdfs:comment>Represents a hockey stick</rdfs:comment>
     </owl:Class>
     
 
@@ -486,7 +595,6 @@
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Sport"/>
-        <owl:disjointWith rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#TeamSport"/>
         <rdfs:comment>A subclass of Sports that includes sports played individually</rdfs:comment>
     </owl:Class>
     
@@ -500,10 +608,20 @@
     
 
 
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#MotorVehicle -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#MotorVehicle">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Vehicle"/>
+        <rdfs:comment>Represents a vehicle with motor</rdfs:comment>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#OpenWater -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#OpenWater">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Venue"/>
+        <rdfs:comment>Open places such as the sea or rivers</rdfs:comment>
     </owl:Class>
     
 
@@ -558,6 +676,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#River">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#OpenWater"/>
+        <rdfs:comment>A river</rdfs:comment>
     </owl:Class>
     
 
@@ -566,6 +685,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Sea">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#OpenWater"/>
+        <rdfs:comment>A sea</rdfs:comment>
     </owl:Class>
     
 
@@ -591,21 +711,8 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Skate"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#PlayedAtVenue"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Court"/>
-                            <rdf:Description rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Rink"/>
-                            <rdf:Description rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Track"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Sport"/>
+        <rdfs:comment>A subclass of Sports that involves the use of skates</rdfs:comment>
     </owl:Class>
     
 
@@ -622,6 +729,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#SportClub">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+        <rdfs:comment>A club dedicated to the practice of sport</rdfs:comment>
     </owl:Class>
     
 
@@ -631,6 +739,15 @@
     <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#SportEvent">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Event"/>
         <rdfs:comment>Represents a specific event or competition that takes place within a sport</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Stick -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Stick">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Equipment"/>
+        <rdfs:comment>Represents a stick</rdfs:comment>
     </owl:Class>
     
 
@@ -710,14 +827,14 @@
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#PlayedAtVenue"/>
-                <owl:someValuesFrom>
+                <owl:allValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
                             <rdf:Description rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#OpenWater"/>
                             <rdf:Description rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Pool"/>
                         </owl:unionOf>
                     </owl:Class>
-                </owl:someValuesFrom>
+                </owl:allValuesFrom>
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Sport"/>
@@ -732,7 +849,7 @@
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#PlayedAtVenue"/>
-                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Rink"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Rink"/>
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Sport"/>
@@ -780,7 +897,7 @@
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EquipmentUsed"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Vehicle"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#MotorVehicle"/>
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Sport"/>
@@ -801,7 +918,7 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Referee">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
-        <rdfs:comment>A person who is in charge of a sports game and who makes certain that the rules are followed</rdfs:comment>
+        <rdfs:comment>Person who is in charge of a sports game and who makes certain that the rules are followed</rdfs:comment>
     </owl:Class>
     
 
@@ -826,6 +943,7 @@
     <!-- http://xmlns.com/foaf/0.1/Group -->
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Group">
+        <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:comment>Group of people</rdfs:comment>
     </owl:Class>
     
@@ -835,13 +953,16 @@
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
+        <rdfs:comment>An organization</rdfs:comment>
     </owl:Class>
     
 
 
     <!-- http://xmlns.com/foaf/0.1/Person -->
 
-    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Person"/>
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Person">
+        <rdfs:comment>A person</rdfs:comment>
+    </owl:Class>
     
 
 
@@ -856,10 +977,156 @@
     
 
 
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#AlRihla -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#AlRihla">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Ball"/>
+        <sport-ontology:brand>Adidas</sport-ontology:brand>
+        <sport-ontology:price rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">63799</sport-ontology:price>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Basketball -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Basketball">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#TeamSport"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EquipmentUsed"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Ball"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#PlayedAtVenue"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Court"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#numberOfPlayers"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">5</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+            </owl:Restriction>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CNSA -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CNSA">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#SportClub"/>
+        <sport-ontology:foundationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1931-01-21T00:00:00Z</sport-ontology:foundationDate>
+        <sport-ontology:name>Club Náutico Sportivo Avellaneda</sport-ontology:name>
+        <sport-ontology:numberOfMembers rdf:datatype="http://www.w3.org/2001/XMLSchema#int">10000</sport-ontology:numberOfMembers>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Team"/>
+        <sport-ontology:PlayerOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Football"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Coloso -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Coloso">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Field"/>
+        <owl:differentFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Gigante"/>
+        <sport-ontology:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">42000</sport-ontology:capacity>
+        <sport-ontology:location>Rosario</sport-ontology:location>
+        <sport-ontology:name>Estadio Coloso Del Parque Marcelo Bielsa</sport-ontology:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaAmistad -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaAmistad">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/RoundRobin"/>
+        <sport-ontology:OrganizedBy rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FPPSF"/>
+        <sport-ontology:Winner rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Mari"/>
+        <sport-ontology1:Competitors rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Mari"/>
+        <sport-ontology:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-11-03T00:00:00Z</sport-ontology:date>
+        <sport-ontology1:numberOfCompetitors rdf:datatype="http://www.w3.org/2001/XMLSchema#int">22</sport-ontology1:numberOfCompetitors>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaArgentina -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaArgentina">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Tournament"/>
+        <sport-ontology:OrganizedBy rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/AFA"/>
+        <sport-ontology:Winner rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol"/>
+        <sport-ontology1:Competitors rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol"/>
+        <sport-ontology1:Competitors rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#NewellsFutbol"/>
+        <sport-ontology1:numberOfCompetitors rdf:datatype="http://www.w3.org/2001/XMLSchema#int">64</sport-ontology1:numberOfCompetitors>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Cycling -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Cycling">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#IndividualSport"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EquipmentUsed"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Bicycle"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#PlayedAtVenue"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Track"/>
+            </owl:Restriction>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FPPSF -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FPPSF">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#GoverningBody"/>
+        <sport-ontology:name>Federación de Patin de la Provincia de Santa Fe</sport-ontology:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FigureSkating -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FigureSkating">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#SkatingSport"/>
+        <rdf:type>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#numberOfPlayers"/>
+                        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#numberOfPlayers"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">24</owl:maxQualifiedCardinality>
+                        <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EquipmentUsed"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Skate"/>
+            </owl:Restriction>
+        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -895,6 +1162,8 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Field"/>
             </owl:Restriction>
         </rdf:type>
+        <sport-ontology:PlayedAtVenue rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Coloso"/>
+        <sport-ontology:PlayedAtVenue rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Gigante"/>
     </owl:NamedIndividual>
     
 
@@ -903,6 +1172,150 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#GER">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#SportClub"/>
+        <sport-ontology:foundationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1904-09-10T00:00:00Z</sport-ontology:foundationDate>
+        <sport-ontology:name>Club Gimnasia y Esgrima de Rosario</sport-ontology:name>
+        <sport-ontology:numberOfMembers rdf:datatype="http://www.w3.org/2001/XMLSchema#int">10000</sport-ontology:numberOfMembers>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Gabriel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Gabriel">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Coach"/>
+        <sport-ontology:CoachOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#NewellsFutbol"/>
+        <sport-ontology:PlayerOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Football"/>
+        <sport-ontology:position>defensor</sport-ontology:position>
+        <sport-ontology1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#int">45</sport-ontology1:age>
+        <foaf2:firstName>Gabriel</foaf2:firstName>
+        <foaf2:surname>Heinze</foaf2:surname>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Gigante -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Gigante">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Field"/>
+        <sport-ontology:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">42000</sport-ontology:capacity>
+        <sport-ontology:location>Rosario</sport-ontology:location>
+        <sport-ontology:name>Estadio Gigante de Arroyito</sport-ontology:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Golf -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Golf">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#BallSport"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#IndividualSport"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EquipmentUsed"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#GolfStick"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#PlayedAtVenue"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Field"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#numberOfPlayers"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+            </owl:Restriction>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Gonzalo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Gonzalo">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <sport-ontology:Presides rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/CARC"/>
+        <foaf2:firstName>Gonzalo</foaf2:firstName>
+        <foaf2:surname>Belloso</foaf2:surname>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Hockey -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Hockey">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EquipmentUsed"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Ball"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EquipmentUsed"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#HockeyStick"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#PlayedAtVenue"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Field"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#numberOfPlayers"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">11</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+            </owl:Restriction>
+        </rdf:type>
+        <sport-ontology:PlayedAtVenue rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Mundialista"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Ignacio -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Ignacio">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <sport-ontology:Presides rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/NOB"/>
+        <foaf2:firstName>Astore</foaf2:firstName>
+        <foaf2:firstName>Ignacio</foaf2:firstName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Kevin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Kevin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
+        <sport-ontology:MemberOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol"/>
+        <sport-ontology:PlayerOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Football"/>
+        <sport-ontology1:Teammate rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Marco"/>
+        <sport-ontology:height rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">170</sport-ontology:height>
+        <sport-ontology:position>centrocampista</sport-ontology:position>
+        <sport-ontology1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#int">22</sport-ontology1:age>
+        <foaf2:firstName>Kevin</foaf2:firstName>
+        <foaf2:surname>Ortíz</foaf2:surname>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Marco -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Marco">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
+        <sport-ontology:MemberOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol"/>
+        <sport-ontology:PlayerOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Football"/>
+        <sport-ontology:debutYear rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2004</sport-ontology:debutYear>
+        <sport-ontology:height rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">182</sport-ontology:height>
+        <sport-ontology:position>delantero</sport-ontology:position>
+        <sport-ontology1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">36</sport-ontology1:age>
+        <foaf2:firstName>Marco</foaf2:firstName>
+        <foaf2:surname>Ruben</foaf2:surname>
     </owl:NamedIndividual>
     
 
@@ -914,6 +1327,90 @@
         <owl:differentFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Mari"/>
         <sport-ontology:PlayerOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Swimming"/>
         <sport-ontology:Represent rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#GER"/>
+        <sport-ontology1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#int">22</sport-ontology1:age>
+        <foaf2:firstName>Maximiliano</foaf2:firstName>
+        <foaf2:surname>Nielsen</foaf2:surname>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Miguel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Miguel">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Coach"/>
+        <sport-ontology:CoachOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol"/>
+        <sport-ontology:PlayerOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Football"/>
+        <sport-ontology:height rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">175</sport-ontology:height>
+        <sport-ontology:position>mediocampista</sport-ontology:position>
+        <sport-ontology1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#int">67</sport-ontology1:age>
+        <foaf2:firstName>Miguel</foaf2:firstName>
+        <foaf2:surname>Russo</foaf2:surname>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#MundialPrecision -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#MundialPrecision">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Match"/>
+        <sport-ontology:Place rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Patinodromo"/>
+        <sport-ontology:Winner rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millennium"/>
+        <sport-ontology1:Competitors rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millennium"/>
+        <sport-ontology:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-11-03T00:00:00Z</sport-ontology:date>
+        <sport-ontology1:numberOfCompetitors rdf:datatype="http://www.w3.org/2001/XMLSchema#int">7</sport-ontology1:numberOfCompetitors>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Mundialista -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Mundialista">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Field"/>
+        <sport-ontology:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12000</sport-ontology:capacity>
+        <sport-ontology:location>Rosario</sport-ontology:location>
+        <sport-ontology:name>Estadio Mundialista de Hockey Luciana Aymar</sport-ontology:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#NewellsFutbol -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#NewellsFutbol">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Team"/>
+        <sport-ontology:ParticipatesIn rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaArgentina"/>
+        <sport-ontology:PlayerOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Football"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Parana -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Parana">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#River"/>
+        <sport-ontology:location>Rio Paraná</sport-ontology:location>
+        <sport-ontology:location>Rosario</sport-ontology:location>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Patinodromo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Patinodromo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Court"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Track"/>
+        <sport-ontology:capacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">500</sport-ontology:capacity>
+        <sport-ontology:location>Rosario</sport-ontology:location>
+        <sport-ontology:name>Patinódromo Municipal Roberto Tagliabué</sport-ontology:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#RevisionNacional -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#RevisionNacional">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Training"/>
+        <sport-ontology:Place rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Patinodromo"/>
     </owl:NamedIndividual>
     
 
@@ -964,11 +1461,82 @@
     
 
 
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Varsity -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Varsity">
+        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#HockeyStick"/>
+        <sport-ontology:brand>REVES</sport-ontology:brand>
+        <sport-ontology:price rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5699</sport-ontology:price>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Volleyball -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Volleyball">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EquipmentUsed"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Ball"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#PlayedAtVenue"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Court"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#numberOfPlayers"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">6</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+            </owl:Restriction>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Waterpolo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Waterpolo">
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EquipmentUsed"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Ball"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EquipmentUsed"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Swimsuit"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#PlayedAtVenue"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Pool"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#numberOfPlayers"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">7</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+            </owl:Restriction>
+        </rdf:type>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/AFA -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/AFA">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#GoverningBody"/>
         <sport-ontology:GoverningBodyOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Football"/>
+        <sport-ontology:foundationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1893-02-21T00:00:00Z</sport-ontology:foundationDate>
+        <sport-ontology:name>Asociación del Fútbol Argentino</sport-ontology:name>
+        <sport-ontology:numberOfMembers rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3500</sport-ontology:numberOfMembers>
     </owl:NamedIndividual>
     
 
@@ -976,8 +1544,26 @@
     <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/BoatRacing -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/BoatRacing">
-        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#WaterSport"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/MotorSport"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#EquipmentUsed"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#MotorVehicle"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#PlayedAtVenue"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#OpenWater"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#numberOfPlayers"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+            </owl:Restriction>
+        </rdf:type>
     </owl:NamedIndividual>
     
 
@@ -987,15 +1573,9 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/CARC">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#SportClub"/>
         <sport-ontology:Represent rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/AFA"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Juan -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Juan">
-        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
-        <sport-ontology:MemberOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millemium"/>
+        <sport-ontology:foundationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1889-12-24T00:00:00Z</sport-ontology:foundationDate>
+        <sport-ontology:name>Club Atlético Rosario Central</sport-ontology:name>
+        <sport-ontology:numberOfMembers rdf:datatype="http://www.w3.org/2001/XMLSchema#int">67000</sport-ontology:numberOfMembers>
     </owl:NamedIndividual>
     
 
@@ -1005,16 +1585,33 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Mari">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Coach"/>
-        <sport-ontology:MemberOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millemium"/>
+        <sport-ontology:MemberOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millennium"/>
+        <sport-ontology:ParticipatesIn rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaAmistad"/>
+        <sport-ontology:ParticipatesIn rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#RevisionNacional"/>
         <sport-ontology:Represent rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CNSA"/>
+        <sport-ontology:debutYear rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2008</sport-ontology:debutYear>
+        <sport-ontology:height rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">168</sport-ontology:height>
+        <sport-ontology1:age rdf:datatype="http://www.w3.org/2001/XMLSchema#int">21</sport-ontology1:age>
+        <foaf2:firstName>Marina</foaf2:firstName>
+        <foaf2:surname>Belmonte</foaf2:surname>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millemium -->
+    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millennium -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millemium">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millennium">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Team"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#numberOfMembers"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">20</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+            </owl:Restriction>
+        </rdf:type>
+        <sport-ontology:PlayerOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FigureSkating"/>
+        <sport-ontology:Represent rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#FPPSF"/>
+        <sport-ontology:name>Millennium Team</sport-ontology:name>
     </owl:NamedIndividual>
     
 
@@ -1024,33 +1621,10 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/NOB">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#SportClub"/>
         <sport-ontology:Represent rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/AFA"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Pablo -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Pablo">
-        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
-        <sport-ontology:MemberOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millemium"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Sofia -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Sofia">
-        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Athlete"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Referee"/>
-        <sport-ontology:MemberOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Millemium"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Valentina -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/Valentina">
-        <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Coach"/>
+        <sport-ontology:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-09-07T00:00:00Z</sport-ontology:date>
+        <sport-ontology:foundationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1903-11-03T00:00:00Z</sport-ontology:foundationDate>
+        <sport-ontology:name>Club Atlético Newell&apos;s Old Boys</sport-ontology:name>
+        <sport-ontology:numberOfMembers rdf:datatype="http://www.w3.org/2001/XMLSchema#int">70257</sport-ontology:numberOfMembers>
     </owl:NamedIndividual>
 </rdf:RDF>
 

@@ -1569,6 +1569,7 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CentralFutbol">
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Team"/>
         <sport-ontology:playerOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Football"/>
+        <sport-ontology:represent rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/CARC"/>
     </owl:NamedIndividual>
     
 
@@ -1938,6 +1939,7 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Team"/>
         <sport-ontology:participatesIn rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#CopaArgentina"/>
         <sport-ontology:playerOf rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology#Football"/>
+        <sport-ontology:represent rdf:resource="http://www.semanticweb.org/marina/ontologies/2023/4/sport-ontology/NOB"/>
     </owl:NamedIndividual>
     
 
